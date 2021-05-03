@@ -1,0 +1,13 @@
+#!/bin/bash
+#узнаем число юзеров
+usernumber=`ls -l /home/user/dir1 | cut -d " " -f3 | grep -v "^$" | uniq -u| wc -l`
+((usernumber++))
+for ((i=1; i < $usernumber; i++))
+do
+        #узнаем имя юзера
+        ls -l dir1 | cut -d " " -f3 | grep -v "^$" | uniq -u |sed -n ``$i``p > username
+        n=`cat username`
+        rm -rf username
+        #копируем файлы
+        sudo cp -p `find dir1 -user $n` /home/$n
+done
