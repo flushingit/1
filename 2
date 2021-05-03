@@ -1,0 +1,11 @@
+#!/bin/bash
+mkdir /home/user/dir2/{2010..2017}
+mkdir /home/user/dir2/{2010..2017}/{01..12}
+touch /home/user/dir2/{2010..2017}/{01..12}/file{001..003}.txt
+for f in dir2/{2010..2017}/{01..12}
+do
+    for j in {001..003}
+    do
+        echo "file$j" >> $f/file$j.txt
+    done
+done
